@@ -222,6 +222,8 @@ internal class CollieGalleryView: UIView, UIScrollViewDelegate {
                 
                 let request: URLRequest = URLRequest(url: URL(string: url)!)
                 let mainQueue = OperationQueue.main
+                
+                
                 NSURLConnection.sendAsynchronousRequest(request,
                                                         queue: mainQueue,
                                                         completionHandler:
