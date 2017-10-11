@@ -258,7 +258,7 @@ internal class CollieGalleryView: UIView, UIScrollViewDelegate {
     
     
     // MARK: - UIGestureRecognizer handlers
-    func viewPressed(_ recognizer: UILongPressGestureRecognizer) {
+    @objc func viewPressed(_ recognizer: UILongPressGestureRecognizer) {
         if (recognizer.state == UIGestureRecognizerState.began) {
             if let delegate = delegate {
                 delegate.galleryViewPressed(self)
@@ -266,7 +266,7 @@ internal class CollieGalleryView: UIView, UIScrollViewDelegate {
         }
     }
     
-    func viewTapped(_ recognizer: UITapGestureRecognizer) {
+    @objc func viewTapped(_ recognizer: UITapGestureRecognizer) {
         if scrollView.zoomScale > scrollView.minimumZoomScale {
             restoreZoom()
             
@@ -277,7 +277,7 @@ internal class CollieGalleryView: UIView, UIScrollViewDelegate {
         }
     }
 
-    func viewDoubleTapped(_ recognizer: UITapGestureRecognizer) {
+    @objc func viewDoubleTapped(_ recognizer: UITapGestureRecognizer) {
         let pointInView = recognizer.location(in: imageView)
         zoomToPoint(pointInView)
     }
