@@ -219,18 +219,9 @@ internal class CollieGalleryView: UIView, UIScrollViewDelegate {
                 }
                 
                 activityIndicator.startAnimating()
-                
-                let request: URLRequest = URLRequest(url: URL(string: url)!)
-                let mainQueue = OperationQueue.main
-                
-                
-                NSURLConnection.sendAsynchronousRequest(request,
-                                                        queue: mainQueue,
-                                                        completionHandler:
-                    { [weak self] response, data, error in
-                    if error == nil {
-                        let image = UIImage(data: data!)!
-                        
+
+                URLSession.shared.dataTask(with: URL(string: url)!) { [weak self] data, response, error in
+                    if error == nil, let data = data, let image = UIImage(data: data) {
                         DispatchQueue.main.async(execute: {
                             self?.imageView.image = image
                             self?.updateImageViewSize()
@@ -238,7 +229,7 @@ internal class CollieGalleryView: UIView, UIScrollViewDelegate {
                             self?.activityIndicator.stopAnimating()
                         })
                     }
-                })
+                }
             }
         }
     }
